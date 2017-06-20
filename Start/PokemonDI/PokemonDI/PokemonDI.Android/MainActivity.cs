@@ -6,7 +6,10 @@ using Android.Runtime;
 using Android.Views;
 using Android.Widget;
 using Android.OS;
+using FFImageLoading;
+using FFImageLoading.Forms.Droid;
 using Microsoft.Practices.Unity;
+using PokemonDI.Helpers;
 using Prism.Unity;
 
 namespace PokemonDI.Droid
@@ -22,6 +25,19 @@ namespace PokemonDI.Droid
             base.OnCreate(bundle);
 
             global::Xamarin.Forms.Forms.Init(this, bundle);
+
+            CachedImageRenderer.Init();
+
+            var config = new FFImageLoading.Config.Configuration()
+            {
+                VerboseLogging = false,
+                VerbosePerformanceLogging = false,
+                VerboseMemoryCacheLogging = false,
+                VerboseLoadingCancelledLogging = false,
+                Logger = new CustomLogger(),
+            };
+
+            ImageService.Instance.Initialize(config);
 
             LoadApplication(new App(new AndroidInitializer()));
         }

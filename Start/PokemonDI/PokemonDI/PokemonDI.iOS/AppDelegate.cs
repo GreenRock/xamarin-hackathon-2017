@@ -1,9 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-
+using FFImageLoading;
+using FFImageLoading.Forms.Touch;
 using Foundation;
 using Microsoft.Practices.Unity;
+using PokemonDI.Helpers;
 using Prism;
 using Prism.Unity;
 using UIKit;
@@ -21,7 +23,23 @@ namespace PokemonDI.iOS
         {
             global::Xamarin.Forms.Forms.Init();
 
+            Xamarin.FormsMaps.Init();
+
+            CachedImageRenderer.Init();
+
+            var config = new FFImageLoading.Config.Configuration()
+            {
+                VerboseLogging = false,
+                VerbosePerformanceLogging = false,
+                VerboseMemoryCacheLogging = false,
+                VerboseLoadingCancelledLogging = false,
+                Logger = new CustomLogger(),
+            };
+
+            ImageService.Instance.Initialize(config);
+
             LoadApplication(new App(new iOSInitializer()));
+            
 
             return base.FinishedLaunching(app, options);
         }

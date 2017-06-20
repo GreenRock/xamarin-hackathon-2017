@@ -27,7 +27,9 @@ namespace PokemonDI.Services
 
         public PokemonInfo GetPokemonInfo(string name)
         {
-            return Pokedex.GetPokemonInfo(name);
+            var info = Pokedex.GetPokemonInfo(name);
+            info.ImageUrl = Pokedex.Pokemons.FirstOrDefault(x => x.Slug == name).ImageUrl;
+            return info;
         }
 
         public List<GeoObject<Pokemon>> GetNearbyPokemon(double lat, double lng, int number, double maxDist)
@@ -36,7 +38,7 @@ namespace PokemonDI.Services
             var random = new Random();
             return Helpers.GeoHelper.CalculateRandomPositions(number, lat, lng, maxDist)
                 .Select(x => new GeoObject<Pokemon>(Pokedex.Pokemons[random.Next(0, count - 1)], x.Latitude,
-                    x.Latitude))
+                    x.Longitude))
                 .ToList();
         }
     }

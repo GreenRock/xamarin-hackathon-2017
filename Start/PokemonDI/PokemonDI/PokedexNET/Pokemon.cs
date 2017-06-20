@@ -25,7 +25,7 @@ namespace PokedexNET
             {
                 if (int.TryParse(Number, out int num))
                 {
-                    return $"http://assets.pokemon.com/assets/cms2/img/pokedex/detail/{num:D3}.png";
+                    return $"https://assets.pokemon.com/assets/cms2/img/pokedex/detail/{num:D3}.png";
                 }
                 return string.Empty;
             }

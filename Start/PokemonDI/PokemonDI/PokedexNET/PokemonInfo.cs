@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using System.Linq;
 using Newtonsoft.Json;
 
 namespace PokedexNET
@@ -104,5 +105,21 @@ namespace PokedexNET
 
         [JsonProperty("pokeathlon_stats")]
         public PokeathlonStats PokeathlonStats { get; set; }
+
+        public string EvolutionTo
+        {
+            get
+            {
+                if (Evolutions != null && Evolutions.Any())
+                {
+                    return Evolutions.Select(x => x.To).Aggregate((x, y) => x + ", " + y);
+                }
+                return "N/A";
+            }
+        }
+        public string DisplayName => Names.En;
+        public string DisplayDescription => PokedexEntries.AlphaSapphire.En;
+        public string ImageUrl { get; set; }
+       
     }
 }
