@@ -39,6 +39,7 @@
       <DependentUpon>App.xaml</DependentUpon>
     </Compile>
     <Compile Include="Controls\CustomMap.cs" />
+    <Compile Include="Controls\RecognitionPage.cs" />
     <Compile Include="Helpers\CustomLogger.cs" />
     <Compile Include="Helpers\GeoHelper.cs" />
     <Compile Include="Models\GeoObject.cs" />
