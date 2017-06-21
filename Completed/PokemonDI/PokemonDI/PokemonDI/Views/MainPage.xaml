@@ -1,0 +1,57 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:local="clr-namespace:PokemonDI"
+             xmlns:ff="clr-namespace:FFImageLoading.Forms;assembly=FFImageLoading.Forms"
+             x:Class="PokemonDI.Views.MainPage"
+             Title="{Binding Title}">
+    <ContentPage.ToolbarItems>
+        <ToolbarItem Icon="camera.png"
+                     Text="ar"
+                     Command="{Binding NavigateCommand}"
+                     CommandParameter="AR" />
+        <ToolbarItem Icon="globe.png"
+                     Text="map"
+                     Command="{Binding NavigateCommand}"
+                     CommandParameter="Map"/>
+    </ContentPage.ToolbarItems>
+    <ListView ItemsSource="{Binding Pokemons}"
+              SelectedItem="{Binding SelectedPokemon}"
+              RowHeight="60"
+              CachingStrategy="RecycleElement">
+        <ListView.ItemTemplate>
+            <DataTemplate>
+                <ViewCell>
+                    <Grid RowSpacing="0">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="Auto" />
+                            <ColumnDefinition />
+                        </Grid.ColumnDefinitions>
+                        <Grid.RowDefinitions>
+                            <RowDefinition />
+                            <RowDefinition />
+                        </Grid.RowDefinitions>
+                        <ff:CachedImage Source="{Binding ImageUrl}"
+                                        Aspect="AspectFit"
+                                        Grid.RowSpan="2"
+                                        WidthRequest="60"
+                                        HeightRequest="60" />
+                        <Label Text="{Binding Id, StringFormat='#{0:D3}'}"
+                               Grid.Row="0"
+                               Grid.Column="1"
+                               FontFamily="14"
+                               VerticalTextAlignment="Center" />
+                        <Label Text="{Binding Name}"
+                               Grid.Column="1"
+                               Grid.Row="1"
+                               TextColor="Accent"
+                               FontSize="18"
+                               VerticalTextAlignment="Center" />
+                    </Grid>
+                </ViewCell>
+            </DataTemplate>
+        </ListView.ItemTemplate>
+    </ListView>
+
+</ContentPage>
+    

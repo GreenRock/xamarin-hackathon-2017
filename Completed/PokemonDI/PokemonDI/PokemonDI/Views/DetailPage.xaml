@@ -1,0 +1,69 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:ff="clr-namespace:FFImageLoading.Forms;assembly=FFImageLoading.Forms"
+             xmlns:transformations="clr-namespace:FFImageLoading.Transformations;assembly=FFImageLoading.Transformations"
+             x:Class="PokemonDI.Views.DetailPage"
+             Title="{Binding Title}">
+
+    <TableView BindingContext="{Binding PokemonInfo}"
+               HasUnevenRows="True">
+        <TableRoot>
+            <TableSection>
+                <ViewCell>
+                    <StackLayout>
+                        <ff:CachedImage Source="{Binding ImageUrl}"
+                                        Margin="0,20,0,0"
+                                        HeightRequest="80"
+                                        WidthRequest="80"
+                                        HorizontalOptions="Center">
+                            <ff:CachedImage.Transformations>
+                                <transformations:CircleTransformation BorderSize="10"
+                                                                      BorderHexColor="#3F51B5"/>
+                            </ff:CachedImage.Transformations>
+                        </ff:CachedImage>
+                        <Label Text="{Binding DisplayName}"
+                               TextColor="Accent"
+                               HorizontalOptions="Center"
+                               FontSize="20"
+                               FontAttributes="Bold" />
+                    </StackLayout>
+                </ViewCell>
+            </TableSection>
+            <TableSection Title="Information">
+                <ViewCell>
+                    <Label Text="{Binding DisplayDescription}"
+                           LineBreakMode="WordWrap"
+                           Margin="16,0,16,4" />
+                </ViewCell>
+                <TextCell Text="Weight"
+                          Detail="{Binding WeightEu}" />
+                <TextCell Text="Height"
+                          Detail="{Binding HeightEu}" />
+                <TextCell Text="Category"
+                          Detail="{Binding Categories.En}" />
+            </TableSection>
+            <TableSection Title="Base Stats">
+                <TextCell Text="Hp"
+                          Detail="{Binding BaseStats.Hp}" />
+                <TextCell Text="Atk"
+                          Detail="{Binding BaseStats.Atk}" />
+                <TextCell Text="Def"
+                          Detail="{Binding BaseStats.Def}" />
+                <TextCell Text="SpAtk"
+                          Detail="{Binding BaseStats.SpAtk}" />
+                <TextCell Text="SpDef"
+                          Detail="{Binding BaseStats.SpDef}" />
+                <TextCell Text="Speed"
+                          Detail="{Binding BaseStats.Speed}" />
+            </TableSection>
+            <TableSection Title="Evolution">
+                <TextCell Text="Evolution From"
+                          Detail="{Binding EvolutionFrom}" />
+                <TextCell Text="Evolution"
+                          Detail="{Binding EvolutionTo}" />
+            </TableSection>
+        </TableRoot>
+    </TableView>
+
+</ContentPage>
