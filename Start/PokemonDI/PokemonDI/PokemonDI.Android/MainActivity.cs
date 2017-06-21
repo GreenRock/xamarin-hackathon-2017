@@ -1,10 +1,6 @@
-﻿using System;
-
-using Android.App;
+﻿using Android.App;
+using Android.Content;
 using Android.Content.PM;
-using Android.Runtime;
-using Android.Views;
-using Android.Widget;
 using Android.OS;
 using FFImageLoading;
 using FFImageLoading.Forms.Droid;
@@ -41,7 +37,17 @@ namespace PokemonDI.Droid
 
             LoadApplication(new App(new AndroidInitializer()));
         }
-
+        protected override async void OnActivityResult(int requestCode, Result resultCode, Intent data)
+        {
+            base.OnActivityResult(requestCode, resultCode, data);
+            if (requestCode == 123)
+            {
+                var application = Xamarin.Forms.Application.Current as PrismApplication;
+                if (application != null)
+                    await application
+                        .MainPage.Navigation.PopAsync();
+            }
+        }
         public class AndroidInitializer : IPlatformInitializer
         {
             public void RegisterTypes(IUnityContainer container)

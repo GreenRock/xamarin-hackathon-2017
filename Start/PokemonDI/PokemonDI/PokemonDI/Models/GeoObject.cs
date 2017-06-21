@@ -11,6 +11,7 @@ namespace PokemonDI.Models
         public T Data { get; set; }
         public double Latitude { get; set; }
         public double Longitude { get; set; }
+        public byte[] ImageBytes { get; set; }
 
         public GeoObject(T value, double lat, double lng)
         {
