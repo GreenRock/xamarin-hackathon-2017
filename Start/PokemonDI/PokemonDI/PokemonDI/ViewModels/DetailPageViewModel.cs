@@ -11,6 +11,7 @@ namespace PokemonDI.ViewModels
     {
         public DetailPageViewModel(INavigationService navigationService) : base(navigationService)
         {
+            Title = "Pokemon";
         }
     }
 }

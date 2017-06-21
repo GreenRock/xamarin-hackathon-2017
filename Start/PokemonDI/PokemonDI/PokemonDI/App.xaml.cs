@@ -18,20 +18,22 @@ namespace PokemonDI
 
         public App(IPlatformInitializer initializer) : base(initializer)
         {
-            
+
         }
 
         protected override void OnInitialized()
         {
-           InitializeComponent();
+            InitializeComponent();
+
+            NavigationService.NavigateAsync("Navigation/Main");
         }
 
         protected override void RegisterTypes()
-        {           
+        {
             Container.RegisterTypeForNavigation<NavigationPage>("Navigation");
             Container.RegisterTypeForNavigation<MainPage>("Main");
             Container.RegisterTypeForNavigation<MapPage>("Map");
-            Container.RegisterTypeForNavigation<DetailPage>("Detail");            
+            Container.RegisterTypeForNavigation<DetailPage>("Detail");
         }
     }
 }

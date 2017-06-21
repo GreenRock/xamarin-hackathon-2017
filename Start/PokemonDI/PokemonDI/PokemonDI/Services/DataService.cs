@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using PokedexNET;
+using PokemonDI.Controls;
 using PokemonDI.Models;
 
 namespace PokemonDI.Services
@@ -30,6 +31,18 @@ namespace PokemonDI.Services
             var info = Pokedex.GetPokemonInfo(name);
             info.ImageUrl = Pokedex.Pokemons.FirstOrDefault(x => x.Slug == name).ImageUrl;
             return info;
+        }
+
+        public List<CustomPin> GetNearbyPokemonAsPins(double lat, double lng, int number, double maxDist = 1)
+        {
+            return GetNearbyPokemon(lat, lng, number, maxDist).Select(x => new CustomPin()
+            {
+                Label = x.Data.Name,
+                Latitude = x.Latitude,
+                Longitude = x.Longitude,
+                Url = x.Data.ImageUrl,
+                Id = x.Data.Number
+            }).ToList();
         }
 
         public List<GeoObject<Pokemon>> GetNearbyPokemon(double lat, double lng, int number, double maxDist)
